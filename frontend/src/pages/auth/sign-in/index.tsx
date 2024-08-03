@@ -1,8 +1,10 @@
 import { InputRightElement } from '@chakra-ui/react'
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { FaEye, FaEyeSlash, FaRegUser } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
+import { api } from '../../../libs/axios'
 import {
   Container,
   Form,
@@ -21,14 +23,36 @@ export function SignIn() {
 
   const handleClick = () => setShow(!show)
 
+  const navigate = useNavigate()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<any>({})
+
+  const onSubmit = handleSubmit(async (data) => {
+    console.log(data)
+
+    await api
+      .post('/sessions', data)
+      .then((response) => {
+        console.log('CREATED', response)
+        navigate('/')
+      })
+      .catch((error) => {
+        console.log('CREATED ERROR: ', error)
+      })
+  })
+
   return (
     <Container>
-      <Form>
+      <Form as={'form'} onSubmit={onSubmit}>
         <Image src="/logo.png" alt="Logo" />
         <FormControl>
+          <FormLabel htmlFor="email">Usuário</FormLabel>
           <InputGroup>
-            <FormLabel htmlFor="email">Usuário</FormLabel>
-            <Input type="email" id="email" name="email" required />
+            <Input type="text" {...register('email')} />
 
             <InputRightElement>
               <FaRegUser color="#ccc" />
@@ -37,9 +61,9 @@ export function SignIn() {
         </FormControl>
 
         <FormControl>
+          <FormLabel htmlFor="password">Senha</FormLabel>
           <InputGroup>
-            <FormLabel htmlFor="password">Senha</FormLabel>
-            <Input type="password" id="password" name="password" required />
+            <Input type="password" {...register('password')} />
 
             <InputRightElement>
               <IconButton onClick={handleClick}>
