@@ -1,4 +1,4 @@
-import { Text } from '../sign-up/styles'
+import { Button, Text } from '../sign-up/styles'
 import {
   Container,
   DataName,
@@ -8,10 +8,10 @@ import {
   FormLabel,
   Image,
   Input,
-  SubmitButton,
+  Redirect,
 } from './styles'
 
-export function SignUpSecurity() {
+export function ResetPassword() {
   return (
     <Container>
       <Form>
@@ -35,11 +35,18 @@ export function SignUpSecurity() {
         </FormControl>
 
         <FormControl>
-          <FormLabel>Em qual cidade seus pais se conheceram</FormLabel>
-          <Input type="text" id="question3" name="Question3" required />
+          <FormLabel>Senha</FormLabel>
+          <Input type="password" id="password" name="Password" required />
         </FormControl>
 
-        <SubmitButton type="submit">Enviar</SubmitButton>
+        <FormControl>
+          <FormLabel>Confirme Senha</FormLabel>
+          <Input type="password" id="password" name="Password" required />
+        </FormControl>
+
+        <Redirect>
+          <Button type="submit">Enviar</Button>
+        </Redirect>
       </Form>
     </Container>
   )
