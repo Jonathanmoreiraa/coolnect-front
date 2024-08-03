@@ -52,7 +52,7 @@ export function SignIn() {
         <SubmitButton type="submit">Entrar</SubmitButton>
 
         <Redirect>
-          <Link to="#">Esqueceu a senha</Link>
+          <Link to="/reset-password">Esqueceu a senha</Link>
           <Link to="/sign-up">Primeiro acesso</Link>
         </Redirect>
       </Form>
