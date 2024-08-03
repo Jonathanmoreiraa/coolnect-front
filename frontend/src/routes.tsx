@@ -6,6 +6,7 @@ import { NotFound } from './pages/404'
 import { Dashboard } from './pages/app/dashboard'
 import { SignIn } from './pages/auth/sign-in'
 import { SignUp } from './pages/auth/sign-up'
+import { SignUpSecurity } from './pages/auth/sign-up-security'
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: '/sign-up',
         element: <SignUp />,
+      },
+      {
+        path: '/sign-up-security',
+        element: <SignUpSecurity />,
       },
     ],
   },
